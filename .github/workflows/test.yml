@@ -1,0 +1,28 @@
+name: Test
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  test:
+    name: Run tests
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version: [ "oldstable", "stable" ]
+        os: [ "ubuntu-latest", "macos-latest" ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build
+        run: make
+      - name: Run tests
+        run: make test
