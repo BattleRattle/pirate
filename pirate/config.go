@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/op/go-logging"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 	"os"
 	"regexp"
 	"time"
